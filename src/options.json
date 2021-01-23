@@ -143,6 +143,10 @@
     "esModule": {
       "description": "Use the ES modules syntax (https://github.com/webpack-contrib/css-loader#esmodule).",
       "type": "boolean"
+    },
+    "onExports": {
+      "description": "Hook exports object",
+      "instanceof": "Function"
     }
   },
   "type": "object"

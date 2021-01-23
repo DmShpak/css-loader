@@ -26,6 +26,7 @@ import {
   getModulesPlugins,
   normalizeSourceMap,
   sort,
+  getHooks,
 } from "./utils";
 
 export default async function loader(content, map, meta) {
@@ -209,6 +210,7 @@ export default async function loader(content, map, meta) {
     }
   }
 
+  getHooks(exports, options, this);
   const importCode = getImportCode(imports, options);
   const moduleCode = getModuleCode(result, api, replacements, options, this);
   const exportCode = getExportCode(exports, replacements, options);

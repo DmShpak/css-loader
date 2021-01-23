@@ -247,6 +247,10 @@ function normalizeOptions(rawOptions, loaderContext) {
         : rawOptions.importLoaders,
     esModule:
       typeof rawOptions.esModule === "undefined" ? true : rawOptions.esModule,
+    onExports:
+      typeof rawOptions.onExports === "function"
+        ? rawOptions.onExports
+        : undefined,
   };
 }
 
@@ -704,6 +708,12 @@ function sort(a, b) {
   return a.index - b.index;
 }
 
+function getHooks(exports, options, loaderContext) {
+  if (options.onExports) {
+    options.onExports(exports, loaderContext);
+  }
+}
+
 export {
   normalizeOptions,
   shouldUseModulesPlugins,
@@ -723,4 +733,5 @@ export {
   resolveRequests,
   isUrlRequestable,
   sort,
+  getHooks,
 };
